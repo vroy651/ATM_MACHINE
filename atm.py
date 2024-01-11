@@ -1,12 +1,13 @@
 class ATM:
     # constructor is special method within it all codes execute automatically whenever its instance is created
     def __init__(self):
-        # initialize of atributes
-        self.pin = ""
-        self.balance = 0
+        # initialize of atributes ,we also hide the attributes, otherwise it can be callled outside from the class
+
+       self.__pin = ""
+       self.__balance = 0
 
         # initialize of methods
-        self.menu()
+       self.menu()
     def menu(self):
        user_input = input("""
        hello sir or madam,how would you like to proceed?
@@ -27,13 +28,13 @@ class ATM:
        else:
            print("thank you!")         
     def create_pin(self):
-        self.pin = input("Enter your pin number")
+        self.__pin = input("Enter your pin number")
         print("your pin number successfully created")
         self.menu()
         
     def check_balance(self):
        temp=input("Please enter your pin number")
-       if temp == self.pin:
+       if temp == self.__pin:
             print(self.balance)
        else:
            print("Invalid pin")
@@ -41,9 +42,9 @@ class ATM:
        
     def deposit(self):
         temp=input("Please enter your pin number")
-        if temp == self.pin:
+        if temp == self.__pin:
             amount=int(input("Enter your amount"))
-            self.balance+=amount
+            self.__balance+=amount
             print("deposit successful")
         else:
             print("please enter your your valid pin number")
@@ -51,13 +52,13 @@ class ATM:
         
     def withdraw(self):
        temp=input("Please enter your pin number")
-       if temp == self.pin:
+       if temp == self.__pin:
             amount=int(input("Enter your amount"))
             
-            if amount<self.balance:
-              self.balance-=amount
+            if amount<self.__balance:
+              self.__balance-=amount
               print("withdraw successful")
-              print(f"your current balance of your acount:{self.balance}")
+              print(f"your current balance of your acount:{self.__balance}")
             else:
               print("not a valid withdraw amount")
        else:
